@@ -11,6 +11,7 @@ function App() {
         return response.json();
       })
       .then((json) => {
+        console.log(process.env.NODE_ENV);
         setMsg(json.message);
       });
   }, []);
