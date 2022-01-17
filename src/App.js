@@ -6,7 +6,17 @@ function App() {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    fetch("https://myapp-123354.herokuapp.com/")
+    let apiUrl;
+
+    if (process.env.NODE_ENV === "production") {
+      apiUrl = "https://myapp-123354.herokuapp.com/";
+    } else if (process.env.NODE_ENV === "development") {
+      apiUrl = "http://localhost:5000";
+    }
+
+    console.log("making call to", apiUrl);
+
+    fetch(apiUrl)
       .then((response) => {
         return response.json();
       })
